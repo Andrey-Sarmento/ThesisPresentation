@@ -62,7 +62,7 @@ class: title-slide, center, middle
 # Modelo Estatístico Clássico
 
 ## Definição
-Um modelo estatístico formal é definido pela trinca $(\mathcal{X},\mathcal{F},\mathcal{P})$, em que:  
+Um modelo estatístico formall é definido pela trinca $(\mathcal{X},\mathcal{F},\mathcal{P})$, em que:  
 - $\mathcal{X} \subseteq \mathbb{R}^n$: espaço amostral (conjunto de todos os possíveis resultados de um experimento aleatório);
 
 - $\mathcal{F}$: $\sigma$-álgebra de subconjuntos de $\mathcal{X}$;
