@@ -211,6 +211,33 @@ knitr::include_graphics('Figuras/Others/Coscrato.png')
 
 ---
 
+# Testes de Hipóteses com 3 Decisões
+
+## Region of Equivalence Agnostic Confidence-based Test - REACT
+
+`r Citet(myBib, 'izbicki2023rethinking')` propõem um procedimento para testar hipóteses baseado em regiões de confiança.
+
+- Definir a hipótese pragmática $\mathcal{H}_0$: $$\Theta_0 = \{\boldsymbol{\theta}\in\Theta: d(\boldsymbol{\theta}, \boldsymbol{\theta}_0) \leq \Delta\},$$ em que $d(\cdot,\cdot)$ é uma medida de dissimilaridade e $\Delta>0$ é uma constante escolhida a priori. Por exemplo, se o interesse for comparar as médias dos efeitos de dois medicamentos, A e B, em vez de testar que a diferença entre as médias de A e B ser igual a zero, testa-se se essa diferença em módulo é menor ou igual a $\Delta$.
+    
+- Região de confiança: criar uma região de confiança para o parâmetro de interesse com determinado nível de confiança. Os autores propõem regiões de confiança construídas por meio do valor-p.
+
+---
+
+# Testes de Hipóteses com 3 Decisões
+
+## Region of Equivalence Agnostic Confidence-based Test - REACT
+    
+- Tomada de decisão:
+
+```{r, echo = F, fig.align = 'center', out.width = '90%'}
+knitr::include_graphics('Figuras/REACT.png')
+```
+
+- *Family-Wise Error Rate* (*FWER*)
+- Consistência do Teste
+
+---
+
 # Tópicos
 
 - Região de Confiança
@@ -220,7 +247,6 @@ knitr::include_graphics('Figuras/Others/Coscrato.png')
 - Conjuntos de Decisão
 - Propriedades
 - Estudo de Simulação
-- Conclusão
 
 ---
 
@@ -374,22 +400,22 @@ knitr::include_graphics('Figuras/valors2_40.png')
 Seja $\mathbf{Y}=\mathbf{X}\boldsymbol{\theta}+\boldsymbol{\epsilon}$, em que $\mathbf{Y}$ é uma matriz $(n \times 1)$ de respostas, $\mathbf{X}$ é uma matriz $(n \times p)$ de covariáveis, $\boldsymbol{\theta}$ é um vetor coluna $(p\times1)$ de parâmetros e $\boldsymbol{\epsilon}\sim\text{N}_{n}(\boldsymbol{0}, \sigma^2\mathbf{I})$, sendo $\mathbf{I}$ uma matriz identidade $n \times n$ e $\sigma^2$ conhecido. Para cada $\boldsymbol{\theta}\in\Theta=\mathbb{R}^{p}$, tem-se que
 $$
 \begin{equation*}
-    T_{\boldsymbol{\theta}} =
+    T_{\boldsymbol{\theta}}(\boldsymbol{d}_n) =
     \frac{(n-p)\left(\boldsymbol{\theta}-\hat{\boldsymbol{\theta}}\right)^{\top}\mathbf{X}^{\top}\mathbf{X}\left(\boldsymbol{\theta}-\hat{\boldsymbol{\theta}}\right)}
     {p\left(\mathbf{Y}-\mathbf{X}\hat{\boldsymbol{\theta}}\right)^{\top}\left(\mathbf{Y}-\mathbf{X}\hat{\boldsymbol{\theta}}\right)}
     \sim F_{p,n-p},
 \end{equation*}
 $$
-em que $\hat{\boldsymbol{\theta}} = \left(\mathbf{X}^{\top}\mathbf{X}\right)^{-1}\mathbf{X}^{\top}\mathbf{Y}$ é o EMV de $\boldsymbol{\theta}$ e a matriz $\mathbf{X}^{\top}\mathbf{X}$ é positiva definida.
+em que $\boldsymbol{d}_n=[\mathbf{X}\ \mathbf{Y}]$ são os dados observados, $\hat{\boldsymbol{\theta}} = \left(\mathbf{X}^{\top}\mathbf{X}\right)^{-1}\mathbf{X}^{\top}\mathbf{Y}$ é o EMV de $\boldsymbol{\theta}$ e a matriz $\mathbf{X}^{\top}\mathbf{X}$ é positiva definida.
 
 Para $\alpha\in(0,1)$, seja
 $$
 \begin{equation}
     \Lambda_{\alpha}^{\boldsymbol{d}_n} =
-    \left\{\boldsymbol{\theta}\in\mathbb{R}^{p}:T_{\boldsymbol{\theta}} \leq F^{-1}(1-\alpha)\right\},
+    \left\{\boldsymbol{\theta}\in\mathbb{R}^{p}:T_{\boldsymbol{\theta}}(\boldsymbol{d}_n) \leq F^{-1}(1-\alpha)\right\},
 \end{equation}
 $$
-em que $\boldsymbol{d}_n=[\mathbf{X}\ \mathbf{Y}]$ são os dados observados e $F(\cdot)$ é a função distribuição de uma variável aleatória F-Snedecor com $p$ e $n-p$ graus de liberdade no numerador e denominador, respectivamente. Portanto, $\{\Lambda_{\alpha}^{\boldsymbol{d}_n}\}_{\alpha\in(0,1)}$ é uma FRRC.
+em que $F(\cdot)$ é a função distribuição F-Snedecor com $p$ e $n-p$ graus de liberdade.
 
 ---
 
@@ -402,8 +428,8 @@ $$
 \begin{align*}
     s_{\boldsymbol{d}_n}(\Theta_0) &=
     \sup\left\{\alpha\in(0,1):\Lambda_{\alpha}^{\boldsymbol{d}_n}\cap\Theta_0\neq\varnothing\right\} \\ &=
-    \sup\left\{\alpha\in(0,1):\alpha \leq 1 - F\left(\inf_{\boldsymbol{\theta}\in\Theta_0}T_{\boldsymbol{\theta}}\right)\right\} \\ &=
-    1 - F\left(\inf_{\boldsymbol{\theta}\in\Theta_0}T_{\boldsymbol{\theta}}\right).
+    \sup\left\{\alpha\in(0,1):\alpha \leq 1 - F\left(\inf_{\boldsymbol{\theta}\in\Theta_0}T_{\boldsymbol{\theta}}(\boldsymbol{d}_n)\right)\right\} \\ &=
+    1 - F\left(\inf_{\boldsymbol{\theta}\in\Theta_0}T_{\boldsymbol{\theta}}(\boldsymbol{d}_n)\right).
 \end{align*}
 $$
 
@@ -590,13 +616,15 @@ summary(fit)
 
 ---
 
-# Monotonicidade
+# Monotonicidade do Valor-S
 
 Representação gráfica da monotonicidade do valor-s generalizado, considerando que as regiões em $\left\{\Lambda_{\alpha}^{\boldsymbol{x}_n}\right\}_{\alpha \in (0,1)}$ são aninhadas.
 
 <div style='text-align: center;'>
   <img src='GIFs/Monotonicidade/monotonicidade.gif' width='600px' height='400px' />
 </div>
+
+- Se $\Theta_{1}\subseteq\Theta_{2}$, então $s_{{\boldsymbol{x}_n}}(\Theta_{1})\leq s_{{\boldsymbol{x}_n}}(\Theta_{2})$.
 
 ---
 
@@ -662,80 +690,67 @@ Para todo conjunto não vazio de índices $I$ e qualquer sequência $\{\Theta_i\
 
 # Conjuntos de Decisão
 
-- Se $\Theta_0\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, então
-  - $\Theta_0^{c}\notin \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, para quaisquer $\alpha_1,\alpha_2\in(0,1)$.
-  - $\Theta_0^{c}\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, para $0<\alpha_1\leq\alpha_2<1$.
+**Teorema.** Se $\Theta_0\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, então
+- $\Theta_0^{c}\notin \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, para quaisquer $\alpha_1,\alpha_2\in(0,1)$.
+- $\Theta_0^{c}\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, para $0<\alpha_1\leq\alpha_2<1$.
 
-- Se $\Theta_0\in\mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, então
-  - $\Theta_{0}^{c}\notin\mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, para quaisquer $\alpha_1,\alpha_2\in(0,1)$.
-  - $\Theta_0^{c}\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, para $1>\alpha_1\geq\alpha_2>0$.
+**Teorema.** Se $\Theta_0\in\mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, então
+- $\Theta_{0}^{c}\notin\mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, para quaisquer $\alpha_1,\alpha_2\in(0,1)$.
+- $\Theta_0^{c}\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, para $1>\alpha_1\geq\alpha_2>0$.
 
-Isso implica que a segunda parte da propriedade de invertibilidade é atendida pelo teste proposto desde que $\alpha_1 \geq \alpha_2$. Portanto, pelos Teoremas 1 e 2, as duas primeiras partes da propriedade de invertibilidade são garantidas simultaneamente se e, somente se, $\alpha_1 = \alpha_2$.
-
----
-
-# Conjuntos de Decisão
-
-Se $\Theta_0\in \mathcal{U}_{\alpha_1,\alpha_2}^{\boldsymbol{x}_n}$, então
+**Teorema.** Se $\Theta_0\in \mathcal{U}_{\alpha_1,\alpha_2}^{\boldsymbol{x}_n}$, então
 - $\Theta_0^c\notin \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, para $0<\alpha_1\leq\alpha_2<1$.
 - $\Theta_0^c\notin \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, para $1>\alpha_1\geq\alpha_2>0$.
 - $\Theta_0^c\in\mathcal{U}_{\alpha,\alpha}^{\boldsymbol{x}_n}$, para $\alpha_1=\alpha_2=\alpha\in(0,1)$.
 
-Segundo o Teorema, quando $\boldsymbol{\theta} \in \Theta_0$ for incerta, então: (1) se o critério para rejeitar a hipótese for tão rigoroso quanto para aceitá-la ($\alpha_1 \leq \alpha_2$), então $\boldsymbol{\theta} \in \Theta_0^c$ não deve ser rejeitada; (2) se o critério para aceitar a hipótese for tão rigoroso quanto para rejeitá-la ($\alpha_1 \geq \alpha_2$), então $\boldsymbol{\theta} \in \Theta_0^c$ não deve ser aceita; (3) quando os critérios de rejeição e aceitação coincidem (i.e., $\alpha_1 = \alpha_2 = \alpha$), então a hipótese alternativa $\boldsymbol{\theta} \in \Theta_0^c$ também deve ser incerta. Sendo assim, para evitar conclusões conflituosas do tipo: $\boldsymbol{\theta} \in \Theta_0$ é incerta e $\boldsymbol{\theta} \in \Theta_0^c$ é rejeitada (ou aceita), deve-se considerar o mesmo rigor tanto para aceitar como para rejeitar uma hipótese (i.e., $\alpha_1=\alpha_2=\alpha$). Este teorema reforça que a propriedade de invertibilidade é satisfeita pelo teste proposto somente quando os limiares coincidem.
-
 ---
 
 # Conjuntos de Decisão
 
-Sejam $\Theta_1\subseteq\Theta_2$ e $\alpha_1,\alpha_2\in(0,1)$.
+**Teorema.** Sejam $\Theta_1\subseteq\Theta_2$ e $\alpha_1,\alpha_2\in(0,1)$.
 - Se $\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, então $\Theta_1\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$.
 - Se $\Theta_1\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, então $\Theta_2\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$.
 - Se $\Theta_1\in \mathcal{U}_{\alpha_1,\alpha_2}^{\boldsymbol{x}_n}$, então $\Theta_2\notin \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$.
 - Se $\Theta_2\in \mathcal{U}_{\alpha_1,\alpha_2}^{\boldsymbol{x}_n}$, então $\Theta_1\notin \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$.
 
-O Teorema estabelece que: (1) se $\boldsymbol{\theta} \in \Theta_2$ for rejeitada, então, para qualquer subconjunto $\Theta_1 \subseteq \Theta_2$, $\boldsymbol{\theta} \in \Theta_1$ também deve ser rejeitada; (2) se $\boldsymbol{\theta} \in \Theta_1$ for aceita, então, para qualquer conjunto $\Theta_2$ que contenha $\Theta_1$, a hipótese $\boldsymbol{\theta} \in \Theta_2$ deve ser aceita; (3) se $\boldsymbol{\theta} \in \Theta_1$ for incerta, então, para qualquer conjunto $\Theta_2$ que contenha $\Theta_1$, a hipótese $\boldsymbol{\theta} \in \Theta_2$ não deve ser rejeitada; e (4) se $\boldsymbol{\theta} \in \Theta_2$ for incerta, então, para qualquer subconjunto $\Theta_1\subseteq\Theta_2$, a hipótese $\boldsymbol{\theta} \in \Theta_1$ não deve ser aceita. Este teorema garante que a propriedade de monotonicidade é satisfeita.
-
----
-
-# Conjuntos de Decisão
-
-No caso de duas hipóteses do tipo $\mathcal{H}_{01}:\boldsymbol{\theta}\in\Theta_1$ e $\mathcal{H}_{02}:\boldsymbol{\theta}\in\Theta_2$, em que $\mathcal{H}_{01}$ e $\mathcal{H}_{02}$ não são necessariamente aninhadas, o Teorema a seguir apresenta algumas relações importantes.
-
-Sejam $\Theta_1,\Theta_2\subseteq\Theta$ e $\alpha_1,\alpha_2\in(0,1)$.
+**Teorema.** Sejam $\Theta_1,\Theta_2\subseteq\Theta$ e $\alpha_1,\alpha_2\in(0,1)$.
 - Se $\Theta_1\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$ ou $\Theta_2\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, então $\Theta_1\cup\Theta_2\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$.
-
 - Se $\Theta_1\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$ ou $\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, então $\Theta_1\cap\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$.
-
 - Se $\Theta_1\cap\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$, então $\Theta_1\notin \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$ ou $\Theta_2\notin \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$.
-
 - Se $\Theta_1\cup\Theta_2\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$, então $\Theta_1\notin \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$ ou $\Theta_2\notin \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$.
-
 - $\Theta_{1},\Theta_{2}\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$ se, e somente se, $\Theta_1\cap\Theta_2\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$.
-
 - $\Theta_1,\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$ se, e somente se, $\Theta_1\cup\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$.
 
 As duas últimas partes do Teorema mostram que o teste proposto é fortemente consistente para a interseção e a união quando $I = \{1,2\}$ (dois conjuntos).
 
 ---
 
-# Conjuntos de Decisão
+# Contra Exemplo (Probabilidade)
 
 **Exemplo.** Seja $\mathbb{P}$ uma medida de probabilidade no espaço mensurável $(\Theta, \sigma(\Theta))$, em que $\sigma(\Theta) \subseteq 2^{\Theta}$, e suponha:
 - $\Theta_0 \in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$ se, e somente se, $\mathbb{P}(\Theta_0) < \alpha_1$;
 - $\Theta_0 \in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$ se, e somente se, $\mathbb{P}(\Theta_0^c) < \alpha_2$ ou, equivalentemente, $\mathbb{P}(\Theta_0) > 1 - \alpha_2$;
 - $\Theta_0 \in \mathcal{U}_{\alpha_1, \alpha_2}^{\boldsymbol{x}_n}$ caso contrário. 
 
-Considere $\Theta_1, \Theta_2 \subseteq \Theta$ conjuntos *disjuntos*, com $\alpha_1 = \alpha_2 = 0.05$, $\mathbb{P}(\Theta_1) = 0.04$ e $\mathbb{P}(\Theta_2) = 0.03$. Neste caso, $\Theta_1 \in \mathcal{R}_{0.05}^{\boldsymbol{x}_n}$ e $\Theta_2 \in \mathcal{R}_{0.05}^{\boldsymbol{x}_n}$. No entanto,
-$\mathbb{P}(\Theta_1 \cup \Theta_2) = \mathbb{P}(\Theta_1) + \mathbb{P}(\Theta_2) = 0.07,$
-logo, $\Theta_1 \cup \Theta_2 \notin \mathcal{R}_{0.05}^{\boldsymbol{x}_n}$.
+Sejam $\Theta_1, \Theta_2 \subseteq \Theta$ conjuntos *disjuntos*, $\alpha_1 = \alpha_2 = 0.05$,
+- $\mathbb{P}(\Theta_1) = 0.04$
+- $\mathbb{P}(\Theta_2) = 0.03$
 
-Considere $\Theta_1, \Theta_2 \subseteq \Theta$ conjuntos *independentes*, com $\alpha_1 = \alpha_2 = 0.05$, $\mathbb{P}(\Theta_1) = 0.96$ e $\mathbb{P}(\Theta_2) = 0.96$. Neste caso, $\Theta_1 \in \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$ e $\Theta_2 \in \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$. No entanto,
-$\mathbb{P}(\Theta_1 \cap \Theta_2) = \mathbb{P}(\Theta_1) \mathbb{P}(\Theta_2) = 0.9216,$
-portanto, $\Theta_1 \cap \Theta_2 \notin \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$. Isso indica que é possível aceitar separadamente as hipóteses $\boldsymbol{\theta} \in \Theta_1$ e $\boldsymbol{\theta} \in \Theta_2$, mas não a hipótese $\boldsymbol{\theta} \in \Theta_1 \cap \Theta_2$.
+Neste caso, $\Theta_1 \in \mathcal{R}_{0.05}^{\boldsymbol{x}_n}$ e $\Theta_2 \in \mathcal{R}_{0.05}^{\boldsymbol{x}_n}$. No entanto,
+$$\mathbb{P}(\Theta_1 \cup \Theta_2) = \mathbb{P}(\Theta_1) + \mathbb{P}(\Theta_2) = 0.07,$$
+logo, $\Theta_1 \cup \Theta_2 \notin \mathcal{R}_{0.05}^{\boldsymbol{x}_n}$.
 
 ---
 
-# Conjuntos de Decisão
+# Contra Exemplo (Probabilidade)
+
+Sejam $\Theta_1, \Theta_2 \subseteq \Theta$ conjuntos *independentes*, $\alpha_1 = \alpha_2 = 0.05$,
+- $\mathbb{P}(\Theta_1) = 0.96$
+- $\mathbb{P}(\Theta_2) = 0.96$
+
+Neste caso, $\Theta_1 \in \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$ e $\Theta_2 \in \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$. No entanto,
+$$\mathbb{P}(\Theta_1 \cap \Theta_2) = \mathbb{P}(\Theta_1) \mathbb{P}(\Theta_2) = 0.9216,$$
+portanto, $\Theta_1 \cap \Theta_2 \notin \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$. É possível aceitar separadamente as hipóteses $\boldsymbol{\theta} \in \Theta_1$ e $\boldsymbol{\theta} \in \Theta_2$, mas não a hipótese $\boldsymbol{\theta} \in \Theta_1 \cap \Theta_2$.
 
 - A violação das duas propriedades é um efeito da probabilidade ser *auto dual*: $$\mathbb{P}(\Theta_0)=1-\mathbb{P}(\Theta_0^c).$$
 
@@ -745,7 +760,7 @@ portanto, $\Theta_1 \cap \Theta_2 \notin \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$.
 
 ---
 
-# Tipos de Erros e Consistência
+# Controle dos Erros Tipo I e II
 
 - Nos testes de hipóteses tradicionais, controla-se a probabilidade de erro do tipo I, mas geralmente não se controla a do tipo II.
 
@@ -760,31 +775,7 @@ $$\sup_{\boldsymbol{\theta}\in\Theta_0}\mathbb{P}_{\boldsymbol{\theta}}\left(\Th
 
 ---
 
-# Tipos de Erros e Consistência
-
-## Region of Equivalence Agnostic Confidence-based Test - REACT
-
-`r Citet(myBib, 'izbicki2023rethinking')` propõem um procedimento para testar hipóteses baseado em regiões de confiança denominado.
-
-- Definir a hipótese pragmática $\mathcal{H}_0$: $$\Theta_0 = \{\boldsymbol{\theta}\in\Theta: d(\boldsymbol{\theta}, \boldsymbol{\theta}_0) \leq \Delta\},$$ em que $d(\cdot,\cdot)$ é uma medida de dissimilaridade e $\Delta>0$ é uma constante escolhida a priori. Por exemplo, se o interesse for comparar as médias dos efeitos de dois medicamentos, A e B, em vez de testar que a diferença entre as médias de A e B ser igual a zero, testa-se se essa diferença em módulo é menor ou igual a $\Delta$.
-    
-- Região de confiança: criar uma região de confiança para o parâmetro de interesse com determinado nível de confiança. Os autores propõem regiões de confiança construídas por meio do valor-p.
-
----
-
-# Tipos de Erros e Consistência
-
-## Region of Equivalence Agnostic Confidence-based Test - REACT
-    
-- Tomada de decisão:
-
-```{r, echo = F, fig.align = 'center', out.width = '90%'}
-knitr::include_graphics('Figuras/REACT.png')
-```
-
----
-
-# Tipos de Erros e Consistência
+# FWER
 
 Testes de hipóteses múltiplas: $$\mathcal{H}_j:\boldsymbol{\theta}\in\Theta_j, \quad \mbox{para } j \in J,$$ em que $J$ é um conjunto não vazio de índices.
 
@@ -798,7 +789,7 @@ $$\bigcup_{j \in J_F(\boldsymbol{\theta})}\left\{\Theta_j\in\mathcal{A}_{\alpha_
 
 ---
 
-# Tipos de Erros e Consistência
+# FWER
 
 **Propriedade.** Para algum conjunto não vazio de índices $J$, sejam $\mathcal{H}_j:\boldsymbol{\theta}\in\Theta_j,\ \mbox{para } j \in J$, $J_V(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \in \Theta_j\}$ e $J_F(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \notin \Theta_j\}$. Para quaisquer $\alpha_1,\alpha_2\in(0,1)$ e cada $\boldsymbol{\theta}\in\Theta$, tem-se que
 $$\begin{align*}
@@ -818,7 +809,7 @@ A Propriedade garante que, mesmo quando diversos testes são realizados simultan
 
 ---
 
-# Tipos de Erros e Consistência
+# Consistência
 
 **Propriedade.** Seja $s_{{\boldsymbol{x}_n}}$ o valor-s baseado em uma FRRC que satisfaz as propriedades de aninhamento e consistência. Então, para $\Theta_0 \subset \Theta \subseteq \mathbb{R}^p$, tem-se que
 $$\begin{equation*}
