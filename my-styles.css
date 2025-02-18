@@ -1,0 +1,43 @@
+/* 1. Título: diminui o espaçamento entre as linhas e a margem inferior */
+.title-slide h1 {
+  font-size: 2em;
+  text-align: center;
+  line-height: 1.1;       /* diminui o espaçamento entre as linhas do título */
+  margin-bottom: 0.4em;   /* reduz o espaço abaixo do título */
+}
+
+/* 2. Nomes (autor e orientador): espaçamento menor entre as linhas */
+.title-slide p {
+  margin: 0.3em 0;        /* se o autor estiver num <p> */
+  line-height: 1.1;
+}
+
+.title-slide .orientador {
+  font-size: 1em;
+  margin: 0.1em 0;        /* espaçamento entre o autor e o orientador */
+}
+
+/* 3. Espaçamento entre o instituto e a imagem */
+.title-slide .institute {
+  font-size: 1em;
+  margin: 0.1em 0 0.2em 0;   /* 0.5em superior e 1em inferior para separar do logo */
+}
+
+/* 4. Espaçamento entre a imagem e a data */
+.title-slide .logo {
+  margin: 0.5em 0 1em 0;   /* 0.5em superior e 1em inferior para separar da data */
+}
+
+.title-slide .date {
+  font-size: 1em;
+  margin-top: 0.5em;
+}
+
+.remark-slide-content::after {
+  content: "sarmento.andrey@ime.usp.br - IME/USP";
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 12px;
+  color: #666;
+}
