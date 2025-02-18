@@ -24,3 +24,7 @@ image_write(img5, 'Figuras/REACT.png', format = 'png')
 img6 = image_read_pdf('Figuras/PDFs/Monotonicidade00.pdf', density = 1000)
 img6 = image_transparent(img6, 'white') 
 image_write(img6, 'Figuras/Monotonicidade00.png', format = 'png')
+
+img7 = image_read('Figuras/valors_40.png', density = 1000)
+img7 = image_transparent(img7, 'white') 
+image_write(img7, 'Figuras/valors2_40.png', format = 'png')

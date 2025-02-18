@@ -19,9 +19,7 @@ output:
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 options(htmltools.dir.version = F)
 library(kableExtra)
-```
 
-```{r, load_refs, include = F, cache = F}
 # Bibliografias e Referências
 library(RefManageR)
 BibOptions(check.entries = F,
@@ -62,7 +60,7 @@ class: title-slide, center, middle
 # Modelo Estatístico Clássico
 
 ## Definição
-Um modelo estatístico formall é definido pela trinca $(\mathcal{X},\mathcal{F},\mathcal{P})$, em que:  
+Um modelo estatístico formal é definido pela trinca $(\mathcal{X},\mathcal{F},\mathcal{P})$, em que:  
 - $\mathcal{X} \subseteq \mathbb{R}^n$: espaço amostral (conjunto de todos os possíveis resultados de um experimento aleatório);
 
 - $\mathcal{F}$: $\sigma$-álgebra de subconjuntos de $\mathcal{X}$;
@@ -359,9 +357,13 @@ Define-se $s_{\boldsymbol{x}_n}(\varnothing)=0$.
 
 ## Interpretação
 
-- O valor-s é o maior nível de significância tal que a região de confiança contém pelo menos um elemento em comum do conjunto $\Theta_0$.
+- O valor-s é o maior nível de significância tal que a região de confiança contém pelo menos um elemento em comum do conjunto $\overline{\Theta}_0$.
 
 - $0<s_{\boldsymbol{x}_n}(\Theta_0)<1$ indica há informação que contradiz parcialmente o conjunto $\Theta_0$ de modo que quanto mais próximo de 0, mais informações contrárias a $\Theta_0$ foram observadas.
+
+```{r, echo = F, fig.align = 'center', out.width = '55%'}
+knitr::include_graphics('Figuras/valors2_40.png')
+```
 
 ---
 
