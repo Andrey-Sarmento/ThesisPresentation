@@ -1,6 +1,6 @@
 ---
 params:
-  title: 'Andrey de Decisão Agnósticos Baseados em uma Generalização do Valor-S'
+  title: 'Conjuntos de Decisão Agnósticos Baseados em uma Generalização do Valor-S'
   author: 'Andrey Bezerra Sarmento'
   orientador: 'Alexandre Patriota'
   institute: 'Instituto de Matemática e Estatística da Universidade de São Paulo'
