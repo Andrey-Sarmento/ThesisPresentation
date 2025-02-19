@@ -856,6 +856,8 @@ kbl(dados,
 
 # Estudo de Simulação
 
+**Figura.** *Heatmaps* das probabilidades de decisão, (a) Rejeição, (b) Aceitação e (c) Agnóstico, estimadas via $10000$ simulações de Monte Carlo para diferentes cenários sob $\mathcal{H}_0:\theta_1\geq0$ e diferentes tamanhos amostrais.
+
 ```{r, echo = F, out.width = '100%', fig.align = 'center'}
 knitr::include_graphics('Figuras/Heatmaps/HeatmapH0.png')
 ```
@@ -902,6 +904,8 @@ kbl(dados,
 ---
 
 # Estudo de Simulação
+
+**Figura.** *Heatmaps* das probabilidades de decisão, (a) Rejeição, (b) Aceitação e (c) Agnóstico, estimadas via $10000$ simulações de Monte Carlo para diferentes cenários sob $\mathcal{H}_1:\theta_1<0$ e diferentes tamanhos amostrais.
 
 ```{r, echo = F, out.width = '100%', fig.align = 'center'}
 knitr::include_graphics('Figuras/Heatmaps/HeatmapH1.png')
