@@ -27,7 +27,9 @@ BibOptions(check.entries = F,
            style = 'markdown',
            hyperlink = F,
            dashed = F,
-           sorting = 'nyt')
+           sorting = 'nyt',
+           max.names = 1,
+           longnamesfirst = F)
 myBib = ReadBib('Bib/bibliografia.bib', check = F)
 ```
 
@@ -351,9 +353,9 @@ em que $\overline{\Lambda_{\alpha}^{\boldsymbol{X}_n}}$ é o fecho de $\Lambda_{
     
 - $\lim\limits_{n\rightarrow\infty}\mathbb{P}_{\boldsymbol{\theta}}\left(\tilde{\Lambda}_\alpha^{\boldsymbol{X}_n}\ni\boldsymbol{\theta}\right) \geq 1 - \alpha$, para cada $\boldsymbol{\theta} \in \Theta$ e cada $\alpha\in(0,1)$;
         
-- $\bigcup\limits_{\alpha \in (0,1)} \Lambda_\alpha^{\boldsymbol{x}_n} = \Theta$, para cada $\boldsymbol{x}_n\in\mathcal{X}$;
+- $\bigcup\limits_{\alpha \in (0,1)} \tilde{\Lambda}_\alpha^{\boldsymbol{x}_n} = \Theta$, para cada $\boldsymbol{x}_n\in\mathcal{X}$;
 
-- $\bigcap\limits_{\alpha \in (0,1)} \Lambda_\alpha^{\boldsymbol{x}_n} \neq \varnothing$, para cada $\boldsymbol{x}_n\in\mathcal{X}$.
+- $\bigcap\limits_{\alpha \in (0,1)} \tilde{\Lambda}_\alpha^{\boldsymbol{x}_n} \neq \varnothing$, para cada $\boldsymbol{x}_n\in\mathcal{X}$.
 
 ---
 
@@ -385,7 +387,7 @@ Define-se $s_{\boldsymbol{x}_n}(\varnothing)=0$.
 
 - O valor-s é o maior nível de significância tal que a região de confiança contém pelo menos um elemento em comum do conjunto $\overline{\Theta}_0$.
 
-- $0<s_{\boldsymbol{x}_n}(\Theta_0)<1$ indica há informação que contradiz parcialmente o conjunto $\Theta_0$ de modo que quanto mais próximo de 0, mais informações contrárias a $\Theta_0$ foram observadas.
+- $0<s_{\boldsymbol{x}_n}(\Theta_0)<1$ indica que há informação que contradiz parcialmente o conjunto $\Theta_0$ de modo que quanto mais próximo de 0, mais informações contrárias a $\Theta_0$ foram observadas.
 
 ```{r, echo = F, fig.align = 'center', out.width = '55%'}
 knitr::include_graphics('Figuras/valors2_40.png')
@@ -435,12 +437,9 @@ $$
 
 ---
 
-# Valor-S Generalizado
+# Propriedades do Valor-S
 
-## Propriedades
-
-Seja $s_{{\boldsymbol{x}_n}}$ o valor-s baseado em uma FRRC $\{\Lambda_{\alpha}^{{\boldsymbol{x}_n}}\}_{\alpha\in(0,1)}$ para $\boldsymbol{\theta}$. Então, para $\Theta_i \subseteq \Theta$, $i=0,1,2$, tem-se as seguintes propriedades:
-
+**Propriedades**. Seja $s_{{\boldsymbol{x}_n}}$ o valor-s baseado em uma FRRC $\{\Lambda_{\alpha}^{{\boldsymbol{x}_n}}\}_{\alpha\in(0,1)}$ para $\boldsymbol{\theta}$. Então, para $\Theta_i \subseteq \Theta$, $i=0,1,2$, tem-se as seguintes propriedades:
 - Se $\Theta_{0} \cap \left(\bigcap\limits_{\alpha \in (0,1)} \Lambda_\alpha^{\boldsymbol{x}_n}\right) \neq \varnothing$, então $s_{\boldsymbol{x}_n}(\Theta_{0}) = 1$.
 
 - $s_{\boldsymbol{x}_n}(\Theta)=1$ e $s_{\boldsymbol{x}_n}(\varnothing)=0$.
@@ -721,42 +720,7 @@ Para todo conjunto não vazio de índices $I$ e qualquer sequência $\{\Theta_i\
 - $\Theta_{1},\Theta_{2}\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$ se, e somente se, $\Theta_1\cap\Theta_2\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$.
 - $\Theta_1,\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$ se, e somente se, $\Theta_1\cup\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$.
 
-As duas últimas partes do Teorema mostram que o teste proposto é fortemente consistente para a interseção e a união quando $I = \{1,2\}$ (dois conjuntos).
-
----
-
-# Contra Exemplo (Probabilidade)
-
-**Exemplo.** Seja $\mathbb{P}$ uma medida de probabilidade no espaço mensurável $(\Theta, \sigma(\Theta))$, em que $\sigma(\Theta) \subseteq 2^{\Theta}$, e suponha:
-- $\Theta_0 \in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$ se, e somente se, $\mathbb{P}(\Theta_0) < \alpha_1$;
-- $\Theta_0 \in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$ se, e somente se, $\mathbb{P}(\Theta_0^c) < \alpha_2$ ou, equivalentemente, $\mathbb{P}(\Theta_0) > 1 - \alpha_2$;
-- $\Theta_0 \in \mathcal{U}_{\alpha_1, \alpha_2}^{\boldsymbol{x}_n}$ caso contrário. 
-
-Sejam $\Theta_1, \Theta_2 \subseteq \Theta$ conjuntos *disjuntos*, $\alpha_1 = \alpha_2 = 0.05$,
-- $\mathbb{P}(\Theta_1) = 0.04$
-- $\mathbb{P}(\Theta_2) = 0.03$
-
-Neste caso, $\Theta_1 \in \mathcal{R}_{0.05}^{\boldsymbol{x}_n}$ e $\Theta_2 \in \mathcal{R}_{0.05}^{\boldsymbol{x}_n}$. No entanto,
-$$\mathbb{P}(\Theta_1 \cup \Theta_2) = \mathbb{P}(\Theta_1) + \mathbb{P}(\Theta_2) = 0.07,$$
-logo, $\Theta_1 \cup \Theta_2 \notin \mathcal{R}_{0.05}^{\boldsymbol{x}_n}$.
-
----
-
-# Contra Exemplo (Probabilidade)
-
-Sejam $\Theta_1, \Theta_2 \subseteq \Theta$ conjuntos *independentes*, $\alpha_1 = \alpha_2 = 0.05$,
-- $\mathbb{P}(\Theta_1) = 0.96$
-- $\mathbb{P}(\Theta_2) = 0.96$
-
-Neste caso, $\Theta_1 \in \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$ e $\Theta_2 \in \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$. No entanto,
-$$\mathbb{P}(\Theta_1 \cap \Theta_2) = \mathbb{P}(\Theta_1) \mathbb{P}(\Theta_2) = 0.9216,$$
-portanto, $\Theta_1 \cap \Theta_2 \notin \mathcal{A}_{0.05}^{\boldsymbol{x}_n}$. É possível aceitar separadamente as hipóteses $\boldsymbol{\theta} \in \Theta_1$ e $\boldsymbol{\theta} \in \Theta_2$, mas não a hipótese $\boldsymbol{\theta} \in \Theta_1 \cap \Theta_2$.
-
-- A violação das duas propriedades é um efeito da probabilidade ser *auto dual*: $$\mathbb{P}(\Theta_0)=1-\mathbb{P}(\Theta_0^c).$$
-
-- Essa relação estrita não se aplica ao valor-s que é uma medida de possibilidade não-aditiva.
-
-- Por exemplo, a partir da informação que $s_{\boldsymbol{x}_n}(\Theta_0)=1$ não se determina o valor $s_{\boldsymbol{x}_n}(\Theta_0^c)$.
+Os dois últimos resultados mostram que o teste proposto é fortemente consistente para a interseção e para a união quando $I = \{1,2\}$ (dois conjuntos).
 
 ---
 
@@ -775,7 +739,7 @@ $$\sup_{\boldsymbol{\theta}\in\Theta_0}\mathbb{P}_{\boldsymbol{\theta}}\left(\Th
 
 ---
 
-# FWER
+# Family-Wise Error Rate (FWER)
 
 Testes de hipóteses múltiplas: $$\mathcal{H}_j:\boldsymbol{\theta}\in\Theta_j, \quad \mbox{para } j \in J,$$ em que $J$ é um conjunto não vazio de índices.
 
@@ -783,13 +747,13 @@ Testes de hipóteses múltiplas: $$\mathcal{H}_j:\boldsymbol{\theta}\in\Theta_j,
 - Aceitar pelo menos uma hipótese falsa (cometer pelo menos um erro tipo II). 
 
 Sejam $J_V(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \in \Theta_j\}$ e $J_F(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \notin \Theta_j\}$, para cada $\boldsymbol{\theta}\in\Theta$, os conjuntos de índices para os quais as hipóteses $\mathcal{H}_j$ são verdadeiras ou falsas. Os eventos de interesse (1) e (2) podem ser representados, respectivamente, por
-$$\bigcup_{j \in J_V(\boldsymbol{\theta})}\left\{\Theta_j\in\mathcal{R}_{\alpha_1}^{\boldsymbol{X}_n}\right\} = \mbox{‘‘rejeitar pelo menos uma hipótese verdadeira'}$$
+$$\bigcup_{j \in J_V(\boldsymbol{\theta})}\left\{\Theta_j\in\mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}\right\} = \mbox{‘‘rejeitar pelo menos uma hipótese verdadeira'}$$
 e
-$$\bigcup_{j \in J_F(\boldsymbol{\theta})}\left\{\Theta_j\in\mathcal{A}_{\alpha_2}^{\boldsymbol{X}_n}\right\} = \mbox{‘‘aceitar pelo menos uma hipótese falsa'}.$$
+$$\bigcup_{j \in J_F(\boldsymbol{\theta})}\left\{\Theta_j\in\mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}\right\} = \mbox{‘‘aceitar pelo menos uma hipótese falsa'}.$$
 
 ---
 
-# FWER
+# Family-Wise Error Rate (FWER)
 
 **Propriedade.** Para algum conjunto não vazio de índices $J$, sejam $\mathcal{H}_j:\boldsymbol{\theta}\in\Theta_j,\ \mbox{para } j \in J$, $J_V(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \in \Theta_j\}$ e $J_F(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \notin \Theta_j\}$. Para quaisquer $\alpha_1,\alpha_2\in(0,1)$ e cada $\boldsymbol{\theta}\in\Theta$, tem-se que
 $$\begin{align*}
@@ -803,9 +767,7 @@ $$\begin{align*}
 
 A Propriedade garante que, mesmo quando diversos testes são realizados simultaneamente, a probabilidade de cometer pelos menos um
 - erro do tipo I não é maior do que $\alpha_1$,
-- erro do tipo II não é maior do que $\alpha_2$,
-- dos dois erros não é maior do que o máximo entre $\alpha_1$ e $\alpha_2$.
-
+- erro do tipo II não é maior do que $\alpha_2$.
 
 ---
 
@@ -825,88 +787,9 @@ A Propriedade estabelece que, assintoticamente, as probabilidades de decisões c
 
 ---
 
-# Exemplo
-
-Em geral, o teste de hipóteses baseado no valor-s gera as mesmas conclusões do teste baseado em regiões de confiança.
-
-**Definição.** Seja $X\sim\text{Binomial}(n,\theta)$, em que $\theta\in\Theta=[0,1]$. Então, para algum $\alpha\in(0,1)$ e $x\in\{0,1,\ldots,n\}$, uma região de confiança para $\theta$, conhecida como intervalo de Clopper-Pearson `r Citet(myBib, 'clopper1934use')`, é dada por $\Lambda_{\alpha}^{x}=[\underline{\theta},\bar{\theta}]$, em que $\underline{\theta}$ e $\bar{\theta}$ são tais que:
-$$\begin{equation}
-\mathbb{P}_{\underline{\theta}}(X \geq x) = \alpha/2
-\quad \text{ e } \quad
-\mathbb{P}_{\bar{\theta}}(X \leq x) = \alpha/2.
-\end{equation}$$
-
-A região pode ser expressa utilizando os quantis da distribuição Beta:
-$$\begin{equation}
-\Lambda_{\alpha}^{x} =
-\left[
-B^{-1}_{x,n-x+1}\left(\frac{\alpha}{2}\right),\
-B^{-1}_{x+1,n-x}\left(1-\frac{\alpha}{2}\right)
-\right],
-\end{equation}$$
-em que $B_{v,w}\left(\cdot\right)$ é a função distribuição da distribuição $\text{Beta}(v,w)$. Se $v=0$ ou $w=0$, considera-se uma variável aleatória degenerada no zero.
-
----
-
-# Exemplo
-
-**Exemplo.** Seja $X\sim\text{Binomial}(n,\theta)$, em que $\theta\in\Theta=[0,1]$. O valor-s de $\Theta_0 = (a, b]$, para $a$ e $b$ tais que $0 \leq a < b \leq 1$, é obtido com base na FRRC de Clopper-Pearson.
-
-Note que
-$$\begin{align*}
-\Lambda_{\alpha}^{x} \cap \Theta_0 \neq \varnothing \iff& 
-\left[
-B^{-1}_{x,n-x+1}\left(\frac{\alpha}{2}\right),\
-B^{-1}_{x+1,n-x}\left(1-\frac{\alpha}{2}\right)
-\right] \cap (a,b] \neq \varnothing \\ \iff&
-B^{-1}_{x+1,n-x}\left(1-\frac{\alpha}{2}\right) > a \text{ e } B^{-1}_{x,n-x+1}\left(\frac{\alpha}{2}\right) \leq b
-\\ \iff&
-\alpha < 2\left[1-B_{x+1,n-x}\left(a\right)\right] \text{ e } \alpha \leq 2B_{x,n-x+1}\left(b\right).
-\end{align*}$$
-
-Assim,
-$$\begin{align*}
-s_{x}\left((a,b]\right) =
-\sup\Big\{\alpha\in(0,1):
-\alpha < 2\left[1-B_{x+1,n-x}\left(a\right)\right] \text{ e } \alpha \leq 2B_{x,n-x+1}\left(b\right)
-\Big\}
-\end{align*}$$
-$$\begin{equation*}
-\iff s_{x}\left((a,b]\right) =
-2\min\Big\{
-1-B_{x+1,n-x}\left(a\right),\ 
-B_{x,n-x+1}\left(b\right)
-\Big\}.
-\end{equation*}$$
-
----
-
-# Exemplo
-
-Como exemplo, suponha que $n = 2$, $x = 0$, $\alpha = 0.08$ e $\Theta_0 = (0.8, 1]$. Assim,
-$$\begin{align*}
-\Lambda_{0.08}^{x} =
-\Big[B^{-1}_{0,3}\left(0.04\right),\ B^{-1}_{1,2}\left(0.96\right)\Big] =
-[0, 0.8],
-\end{align*}$$
-enquanto o valor-s de $\Theta_0$ é calculado como:
-$$\begin{align*}
-s_{x}\left((0.8,1]\right) &=
-2\min\Big\{1-B_{1,2}\left(0.8\right),\ B_{0,3}\left(1\right)\Big\} \\ &=
-2\min\left\{\int_{0.8}^{1}2(1-t)\ dt,\ 1\right\} \\ &=
-2\min\left\{0.04,\ 1\right\} \\ &=
-0.08.
-\end{align*}$$
-    
-- Como $\Lambda_{0.08}^{x} \cap \Theta_0 = [0, 0.8] \cap (0.8, 1] = \varnothing$, então o teste baseado em regiões de confiança rejeita a hipótese $\mathcal{H}_0:\theta > 0.8$.
-
-- O valor-s é dado por $s_{x}(\Theta_0) = \alpha = 0.08$. Isso implica que o teste baseado no valor-s se mantém agnóstico em relação à hipótese $\mathcal{H}_0: \theta > 0.8$.
-
----
-
 # Estudo de Simulação
 
-O estudo de simulação apresentado neste capítulo tem como objetivo avaliar empiricamente as Propriedades do teste baseado no valor-s. Para isso, utiliza-se o modelo de regressão com $p = 2$, ou seja: $$\mathbf{Y}=\mathbf{X}\boldsymbol{\theta}+\boldsymbol{\epsilon},$$ em que $$\boldsymbol{\theta}=[\theta_0\ \theta_1]^{\top}\in\Theta=\mathbb{R}^{2},$$ com $\boldsymbol{\epsilon}\sim\text{N}_{n}(\boldsymbol{0}, \sigma^2\mathbf{I})$.
+O estudo de simulação apresentado neste capítulo tem como objetivo avaliar empiricamente algumas propriedades do teste baseado no valor-s. Para isso, utiliza-se o modelo de regressão com $p = 2$, ou seja: $$\mathbf{Y}=\mathbf{X}\boldsymbol{\theta}+\boldsymbol{\epsilon},$$ em que $$\boldsymbol{\theta}=[\theta_0\ \theta_1]^{\top}\in\Theta=\mathbb{R}^{2},$$ com $\boldsymbol{\epsilon}\sim\text{N}_{n}(\boldsymbol{0}, \sigma^2\mathbf{I})$.
 
 As hipóteses de interesse são:
 $$\mathcal{H}_0: \boldsymbol{\theta} \in \Theta_0 = \left\{\boldsymbol{\theta} \in \mathbb{R}^2: \theta_1 \geq 0\right\} \quad \text{e} \quad \mathcal{H}_1: \boldsymbol{\theta} \in \Theta_0^c = \left\{\boldsymbol{\theta} \in \mathbb{R}^2: \theta_1 < 0\right\}.$$
@@ -1055,7 +938,7 @@ knitr::include_graphics('Figuras/Heatmaps/HeatmapH1.png')
 # Referências
 
 ```{r, echo = F, results = 'asis'}
-PrintBibliography(myBib, start = 1, end = 7)
+PrintBibliography(myBib, start = 1, end = 6)
 ```
 
 ---
@@ -1063,7 +946,7 @@ PrintBibliography(myBib, start = 1, end = 7)
 # Referências
 
 ```{r, echo = F, results = 'asis'}
-PrintBibliography(myBib, start = 8, end = 12)
+PrintBibliography(myBib, start = 7, end = 12)
 ```
 
 ---
