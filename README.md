@@ -4,4 +4,4 @@ Esta apresentação foi preparada para a defesa de dissertação no Instituto de
 
 Acesse a apresentação clicando na imagem.
 
-[![Minha Apresentação](Figuras\Capa.png)](https://andrey-sarmento.github.io/ThesisPresentation/)
+[![Minha Apresentação](Figuras/Capa.png)](https://andrey-sarmento.github.io/ThesisPresentation/)
