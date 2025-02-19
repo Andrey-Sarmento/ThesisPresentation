@@ -1,6 +1,6 @@
 ---
 params:
-  title: 'Conjuntos de Decisão Agnósticos Baseados em uma Generalização do Valor-S'
+  title: 'Andrey de Decisão Agnósticos Baseados em uma Generalização do Valor-S'
   author: 'Andrey Bezerra Sarmento'
   orientador: 'Alexandre Patriota'
   institute: 'Instituto de Matemática e Estatística da Universidade de São Paulo'
@@ -736,20 +736,6 @@ Os dois últimos resultados mostram que o teste proposto é fortemente consisten
 $$\sup_{\boldsymbol{\theta}\in\Theta_0}\mathbb{P}_{\boldsymbol{\theta}}\left(\Theta_0\in\mathcal{R}_{\alpha_1}^{\boldsymbol{X}_n}\right)\leq \alpha_1
     \quad \text{e} \quad 
     \sup_{\boldsymbol{\theta}\in\Theta_0^c}\mathbb{P}_{\boldsymbol{\theta}}\left(\Theta_0\in\mathcal{A}_{\alpha_2}^{\boldsymbol{X}_n}\right)\leq \alpha_2.$$
-
----
-
-# Family-Wise Error Rate (FWER)
-
-Testes de hipóteses múltiplas: $$\mathcal{H}_j:\boldsymbol{\theta}\in\Theta_j, \quad \mbox{para } j \in J,$$ em que $J$ é um conjunto não vazio de índices.
-
-- Rejeitar pelo menos uma hipótese verdadeira (cometer pelo menos um erro tipo I).
-- Aceitar pelo menos uma hipótese falsa (cometer pelo menos um erro tipo II). 
-
-Sejam $J_V(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \in \Theta_j\}$ e $J_F(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \notin \Theta_j\}$, para cada $\boldsymbol{\theta}\in\Theta$, os conjuntos de índices para os quais as hipóteses $\mathcal{H}_j$ são verdadeiras ou falsas. Os eventos de interesse (1) e (2) podem ser representados, respectivamente, por
-$$\bigcup_{j \in J_V(\boldsymbol{\theta})}\left\{\Theta_j\in\mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}\right\} = \mbox{‘‘rejeitar pelo menos uma hipótese verdadeira'}$$
-e
-$$\bigcup_{j \in J_F(\boldsymbol{\theta})}\left\{\Theta_j\in\mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}\right\} = \mbox{‘‘aceitar pelo menos uma hipótese falsa'}.$$
 
 ---
 

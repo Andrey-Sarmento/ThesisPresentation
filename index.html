@@ -749,20 +749,6 @@ Os dois últimos resultados mostram que o teste proposto é fortemente consisten
 
 # Family-Wise Error Rate (FWER)
 
-Testes de hipóteses múltiplas: `$$\mathcal{H}_j:\boldsymbol{\theta}\in\Theta_j, \quad \mbox{para } j \in J,$$` em que `\(J\)` é um conjunto não vazio de índices.
-
-- Rejeitar pelo menos uma hipótese verdadeira (cometer pelo menos um erro tipo I).
-- Aceitar pelo menos uma hipótese falsa (cometer pelo menos um erro tipo II). 
-
-Sejam `\(J_V(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \in \Theta_j\}\)` e `\(J_F(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \notin \Theta_j\}\)`, para cada `\(\boldsymbol{\theta}\in\Theta\)`, os conjuntos de índices para os quais as hipóteses `\(\mathcal{H}_j\)` são verdadeiras ou falsas. Os eventos de interesse (1) e (2) podem ser representados, respectivamente, por
-`$$\bigcup_{j \in J_V(\boldsymbol{\theta})}\left\{\Theta_j\in\mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}\right\} = \mbox{‘‘rejeitar pelo menos uma hipótese verdadeira'}$$`
-e
-`$$\bigcup_{j \in J_F(\boldsymbol{\theta})}\left\{\Theta_j\in\mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}\right\} = \mbox{‘‘aceitar pelo menos uma hipótese falsa'}.$$`
-
----
-
-# Family-Wise Error Rate (FWER)
-
 **Propriedade.** Para algum conjunto não vazio de índices `\(J\)`, sejam `\(\mathcal{H}_j:\boldsymbol{\theta}\in\Theta_j,\ \mbox{para } j \in J\)`, `\(J_V(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \in \Theta_j\}\)` e `\(J_F(\boldsymbol{\theta}) = \{j \in J: \boldsymbol{\theta} \notin \Theta_j\}\)`. Para quaisquer `\(\alpha_1,\alpha_2\in(0,1)\)` e cada `\(\boldsymbol{\theta}\in\Theta\)`, tem-se que
 `$$\begin{align*}
     &amp;FWER_{I}(\boldsymbol{\theta}) =
