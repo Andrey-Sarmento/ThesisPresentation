@@ -946,3 +946,19 @@ PrintBibliography(myBib, start = 7, end = 12)
 ```{r, echo = F, results = 'asis'}
 PrintBibliography(myBib, start = 13)
 ```
+
+---
+
+```{r, echo = F, out.width = '30%', fig.align = 'center'}
+library(qrcode)
+QR = qr_code('https://github.com/Andrey-Sarmento/ThesisPresentation.git')
+plot(QR)
+```
+
+---
+
+```{r, echo = F, out.width = '30%', fig.align = 'center'}
+plot(QR)
+```
+
+**Obrigado!**
