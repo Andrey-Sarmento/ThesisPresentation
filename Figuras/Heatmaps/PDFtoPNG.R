@@ -1,4 +1,4 @@
-# Diret??rio:
+# Diretório:
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
