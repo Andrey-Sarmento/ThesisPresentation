@@ -155,7 +155,11 @@ Este procedimento consiste em testar hipóteses simples (nula e alternativa), is
 
 Patriota (2013).
 
-&lt;img src="Figuras/Others/Patriota.png" width="80%" style="display: block; margin: auto;" /&gt;&lt;img src="Figuras/Others/Patriota2.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Figuras/Others/Patriota.png" width="60%" style="display: block; margin: auto;" /&gt;&lt;img src="Figuras/Others/Patriota2.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+- Apresenta uma medida de evidência para testar hipóteses estatísticas, denominada valor-s.
+- Neste trabalho, vamos generalizar a definição do valor-s.
+- Discute um teste baseado no valor-s com a possibilidade de indecisão.
 
 ---
 
@@ -164,6 +168,10 @@ Patriota (2013).
 Esteves et al. (2016).
 
 &lt;img src="Figuras/Others/Esteveselal.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+- O termo "agnóstico" surge no cenário de testes de hipóteses.
+- Definem algumas propriedades lógicas para testes agnósticos.
+- O único teste fortemente coerente é o teste baseado em regiões de confiança.
 
 ---
 
@@ -200,15 +208,11 @@ Izbicki et al. (2023) propõem um procedimento para testar hipóteses baseado em
 
 ---
 
-# Tópicos
+class: center, middle
 
-- Região de Confiança
-- Família Regular de Regiões de Confiança
-- Valor-S Generalizado
-- Monotonicidade
-- Conjuntos de Decisão
-- Propriedades
-- Estudo de Simulação
+&lt;div style="font-size: 50px; text-align: center;"&gt;
+  &lt;strong&gt;Família Regular de Regiões de Confiança&lt;/strong&gt;
+&lt;/div&gt;
 
 ---
 
@@ -252,24 +256,6 @@ Dizemos que `\(\alpha\in(0,1)\)` é o nível de significância.
 
 # Família Regular de Regiões de Confiança
 
-## Definição de FRRC
-
-**Família Regular de Regiões de Confiança - FRRC**. Seja `\(\{\Lambda_\alpha^{\boldsymbol{x}_n}\}_{\alpha\in(0,1)}\)` uma coleção de funções `\(\Lambda_\alpha^{\cdot}:\mathcal{X}\to2^{\Theta}\)`. Tal coleção é dita ser uma Família Regular de Regiões de Confiança (FRRC) para `\(\boldsymbol{\theta}\)` se, e somente se, as seguintes condições de regularidade forem satisfeitas:
-    
-- `\(\mathbb{P}_{\boldsymbol{\theta}}\left(\Lambda_\alpha^{\boldsymbol{X}_n} \ni \boldsymbol{\theta}\right) \geq 1 - \alpha\)`, para cada `\(\boldsymbol{\theta} \in \Theta\)` e cada `\(\alpha\in(0,1)\)`;
-        
-- `\(\bigcup\limits_{\alpha \in (0,1)} \Lambda_\alpha^{\boldsymbol{x}_n} = \Theta\)`, para cada `\(\boldsymbol{x}_n\in\mathcal{X}\)`;
-
-- `\(\bigcap\limits_{\alpha \in (0,1)} \Lambda_\alpha^{\boldsymbol{x}_n} \neq \varnothing\)`, para cada `\(\boldsymbol{x}_n\in\mathcal{X}\)`.
-`$$\color{blue}{
-\bigcap\limits_{\alpha \in (0,1)} \Lambda_\alpha^{\boldsymbol{x}_n} \neq \varnothing \iff
-\Lambda_{\alpha}^{\boldsymbol{x}_n}\neq\varnothing, \text{ para cada } \alpha\in(0,1).
-}$$`
-
----
-
-# Família Regular de Regiões de Confiança
-
 **Aninhamento.** Uma FRRC para `\(\boldsymbol{\theta}\)`, `\(\{\Lambda_{\alpha}^{\boldsymbol{x}_n}\}_{\alpha\in(0,1)}\)`, satisfaz a propriedade de aninhamento se, e somente se, para cada `\(\boldsymbol{x}_n\in\mathcal{X}\)`,
 
 $$
@@ -303,6 +289,8 @@ $$
 $$
 em que `\(\overline{\Lambda_{\alpha}^{\boldsymbol{X}_n}}\)` é o fecho de `\(\Lambda_{\alpha}^{\boldsymbol{X}_n}\)`.
 
+- A região de confiança converge em probabilidade para o parâmetro `\(\boldsymbol{\theta}\)`.
+
 ---
 
 # Família Regular de Regiões de Confiança
@@ -316,6 +304,14 @@ em que `\(\overline{\Lambda_{\alpha}^{\boldsymbol{X}_n}}\)` é o fecho de `\(\La
 - `\(\bigcup\limits_{\alpha \in (0,1)} \tilde{\Lambda}_\alpha^{\boldsymbol{x}_n} = \Theta\)`, para cada `\(\boldsymbol{x}_n\in\mathcal{X}\)`;
 
 - `\(\bigcap\limits_{\alpha \in (0,1)} \tilde{\Lambda}_\alpha^{\boldsymbol{x}_n} \neq \varnothing\)`, para cada `\(\boldsymbol{x}_n\in\mathcal{X}\)`.
+
+---
+
+class: center, middle
+
+&lt;div style="font-size: 70px; text-align: center;"&gt;
+  &lt;strong&gt;Valor-S Generalizado&lt;/strong&gt;
+&lt;/div&gt;
 
 ---
 
@@ -431,6 +427,16 @@ $$
 $$
 em que `\(\mbox{int}(A)\)` é o interior do conjunto `\(A\)`.
 
+&lt;img src="Figuras/REACT.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle
+
+&lt;div style="font-size: 70px; text-align: center;"&gt;
+  &lt;strong&gt;Monotonicidade&lt;/strong&gt;
+&lt;/div&gt;
+
 ---
 
 # Monotonicidade
@@ -528,6 +534,8 @@ em que `\(t_{\hat{\boldsymbol{\theta}}_{j}}^{(j)}\)` é o valor observado da est
 
 ## Exemplo de Violação
 
+Hipóteses `$$\mathcal{H}_{1}:\theta_1=\theta_2=0 \quad \mbox{e} \quad \mathcal{H}_{2}:\theta_1=0.$$`
+
 - `\(t_{\hat{\boldsymbol{\theta}}_{1}}^{(1)} = 3.149735\)` e `\(t_{\hat{\boldsymbol{\theta}}_{2}}^{(2)} = 5.78221\)`.
 - `\(p_{\boldsymbol{d}_{10}}(\Theta_1) = 0.1058\)` e `\(p_{\boldsymbol{d}_{10}}(\Theta_2) = 0.0471\)`.
 - Os dados observados apresentam mais evidências contra `\(\theta_1 = 0\)` do que contra `\(\theta_1 = \theta_2 = 0\)` `\((0.0471&lt;0.1058)\)`, o que viola a propriedade de monotonicidade.
@@ -579,50 +587,6 @@ em que `\(t_{\hat{\boldsymbol{\theta}}_{j}}^{(j)}\)` é o valor observado da est
 
 ---
 
-# Monotonicidade
-
-## Exemplo de Violação
-
-
-``` r
-df = data.frame(y  = c(0.33, -0.24, 3.11, 0.69, 4.05, 1.71, 4.41, -2.05, 0.05, 0.78),
-                x1 = c(-6.54, 1.30, 1.93, -1.68, 2.90, 3.54, 4.79, -4.71, 2.58, -4.10),
-                x2 = c(0.27, -0.54, 1.00, 0.87, -0.56, 0.13, -0.26, -0.76, 0.05, -0.19))
-fit = lm(y ~ x1 + x2, data = df)
-summary(fit)
-```
-
----
-
-# Monotonicidade
-
-## Exemplo de Violação
-
-
-```
-## 
-## Call:
-## lm(formula = y ~ x1 + x2, data = df)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.14438 -1.13070 -0.05446  1.07273  2.15708 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept)   1.2830     0.5304   2.419   0.0462 *
-## x1            0.3402     0.1415   2.405   0.0471 *
-## x2            0.6727     0.9472   0.710   0.5006  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.677 on 7 degrees of freedom
-## Multiple R-squared:  0.4737,	Adjusted R-squared:  0.3233 
-## F-statistic:  3.15 on 2 and 7 DF,  p-value: 0.1058
-```
-
----
-
 # Monotonicidade do Valor-S
 
 Representação gráfica da monotonicidade do valor-s generalizado, considerando que as regiões em `\(\left\{\Lambda_{\alpha}^{\boldsymbol{x}_n}\right\}_{\alpha \in (0,1)}\)` são aninhadas.
@@ -632,6 +596,14 @@ Representação gráfica da monotonicidade do valor-s generalizado, considerando
 &lt;/div&gt;
 
 - Se `\(\Theta_{1}\subseteq\Theta_{2}\)`, então `\(s_{{\boldsymbol{x}_n}}(\Theta_{1})\leq s_{{\boldsymbol{x}_n}}(\Theta_{2})\)`.
+
+---
+
+class: center, middle
+
+&lt;div style="font-size: 70px; text-align: center;"&gt;
+  &lt;strong&gt;Conjuntos de Decisão&lt;/strong&gt;
+&lt;/div&gt;
 
 ---
 
@@ -728,7 +700,15 @@ Para todo conjunto não vazio de índices `\(I\)` e qualquer sequência `\(\{\Th
 - `\(\Theta_{1},\Theta_{2}\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}\)` se, e somente se, `\(\Theta_1\cap\Theta_2\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}\)`.
 - `\(\Theta_1,\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}\)` se, e somente se, `\(\Theta_1\cup\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}\)`.
 
-Os dois últimos resultados mostram que o teste proposto é fortemente consistente para a interseção e para a união quando `\(I = \{1,2\}\)` (dois conjuntos).
+O teste baseado no valor-s satisfaz todas as propriedades lógicas desde que `\(\alpha_1=\alpha_2\)`.
+
+---
+
+class: center, middle
+
+&lt;div style="font-size: 70px; text-align: center;"&gt;
+  &lt;strong&gt;Controle dos Erros e Consistência do Teste&lt;/strong&gt;
+&lt;/div&gt;
 
 ---
 
@@ -744,6 +724,9 @@ Os dois últimos resultados mostram que o teste proposto é fortemente consisten
 `$$\sup_{\boldsymbol{\theta}\in\Theta_0}\mathbb{P}_{\boldsymbol{\theta}}\left(\Theta_0\in\mathcal{R}_{\alpha_1}^{\boldsymbol{X}_n}\right)\leq \alpha_1
     \quad \text{e} \quad 
     \sup_{\boldsymbol{\theta}\in\Theta_0^c}\mathbb{P}_{\boldsymbol{\theta}}\left(\Theta_0\in\mathcal{A}_{\alpha_2}^{\boldsymbol{X}_n}\right)\leq \alpha_2.$$`
+
+- Probabilidade máxima de cometer o erro tipo I é menor que `\(\alpha_1\)`.
+- Probabilidade máxima de cometer o erro tipo II é menor que `\(\alpha_2\)`.
 
 ---
 
@@ -777,7 +760,16 @@ e
 \end{equation*}$$`
 em que `\(\mbox{int}(A)\)` é o interior do conjunto `\(A\)`.
 
-A Propriedade estabelece que, assintoticamente, as probabilidades de decisões corretas, como rejeitar `\(\boldsymbol{\theta} \in \Theta_0\)` quando falsa ou aceitar `\(\boldsymbol{\theta} \in \Theta_0\)` quando verdadeira, convergem para 1, o que evita problemas de rejeitar a hipótese sempre que `\(n\)` aumenta.
+- Assintoticamente, as probabilidades de decisões corretas, como rejeitar `\(\boldsymbol{\theta} \in \Theta_0\)` quando falsa ou aceitar `\(\boldsymbol{\theta} \in \Theta_0\)` quando verdadeira, convergem para 1.
+- Evita problemas do tipo "rejeitar a hipótese sempre que `\(n\)` aumenta".
+
+---
+
+class: center, middle
+
+&lt;div style="font-size: 70px; text-align: center;"&gt;
+  &lt;strong&gt;Estudo de Simulação&lt;/strong&gt;
+&lt;/div&gt;
 
 ---
 
@@ -792,7 +784,7 @@ As hipóteses de interesse são:
 
 # Estudo de Simulação
 
-- Probabilidades estimadas via Monte Carlo com `\(R = 10000\)` simulações.  
+- `\(R = 10000\)` simulações de Monte Carlo.  
 
 - Tamanhos amostrais: `\(n \in \{10, 50, 80, 100, 300, 500\}\)`.  
 
@@ -991,6 +983,9 @@ As hipóteses de interesse são:
 
 &lt;img src="Figuras/Heatmaps/HeatmapH0.png" width="100%" style="display: block; margin: auto;" /&gt;
 
+- As probabilidades de aceitação convergem pra 1 com o aumento de `\(n\)`.
+- Essa convergência é mais rápida em cenários distantes da borda da hipótese testada.
+
 ---
 
 # Estudo de Simulação
@@ -1175,6 +1170,17 @@ As hipóteses de interesse são:
 
 &lt;img src="Figuras/Heatmaps/HeatmapH1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
+- As probabilidades de rejeição convergem pra 1 com o aumento de `\(n\)`.
+- Essa convergência é mais rápida em cenários distantes da borda da hipótese testada.
+
+---
+
+class: center, middle
+
+&lt;div style="font-size: 70px; text-align: center;"&gt;
+  &lt;strong&gt;Conclusão&lt;/strong&gt;
+&lt;/div&gt;
+
 ---
 
 # Conclusão
@@ -1195,11 +1201,9 @@ As hipóteses de interesse são:
 
 - Estudar o valor-s em modelos não identificáveis.
 
-- Estudar as propriedades do teste quando o modelo está mal especificado (*model misspecification*).
+- Estudar as propriedades do teste proposto quando o modelo está mal especificado (*model misspecification*).
 
-- Desenvolver uma teoria para modelos de linguagem.
-
-- Comparar os testes agnósticos utilizando duas medidas de evidência: a clássica, representada pelo valor-s, e a bayesiana, representada pelo valor-e.
+- Desenvolver uma teoria para modelos de aprendizado de máquina, como modelos de linguagem.
 
 ---
 
@@ -1270,11 +1274,7 @@ of the American Mathematical Society_ 54, pp. 426-482.
 
 ---
 
-&lt;img src="index_files/figure-html/unnamed-chunk-24-1.png" width="30%" style="display: block; margin: auto;" /&gt;
-
----
-
-&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" width="30%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 **Obrigado!**
     </textarea>

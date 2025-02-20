@@ -186,10 +186,14 @@ Este procedimento consiste em testar hipóteses simples (nula e alternativa), is
 
 `r Citet(myBib, 'patriota2013classical')`.
 
-```{r, echo = F, fig.align = 'center', out.width = '80%'}
+```{r, echo = F, fig.align = 'center', out.width = '60%'}
 knitr::include_graphics('Figuras/Others/Patriota.png')
 knitr::include_graphics('Figuras/Others/Patriota2.png')
 ```
+
+- Apresenta uma medida de evidência para testar hipóteses estatísticas, denominada valor-s.
+- Neste trabalho, vamos generalizar a definição do valor-s.
+- Discute um teste baseado no valor-s com a possibilidade de indecisão.
 
 ---
 
@@ -200,6 +204,10 @@ knitr::include_graphics('Figuras/Others/Patriota2.png')
 ```{r, echo = F, fig.align = 'center', out.width = '100%'}
 knitr::include_graphics('Figuras/Others/Esteveselal.png')
 ```
+
+- O termo "agnóstico" surge no cenário de testes de hipóteses.
+- Definem algumas propriedades lógicas para testes agnósticos.
+- O único teste fortemente coerente é o teste baseado em regiões de confiança.
 
 ---
 
@@ -240,15 +248,11 @@ knitr::include_graphics('Figuras/REACT.png')
 
 ---
 
-# Tópicos
+class: center, middle
 
-- Região de Confiança
-- Família Regular de Regiões de Confiança
-- Valor-S Generalizado
-- Monotonicidade
-- Conjuntos de Decisão
-- Propriedades
-- Estudo de Simulação
+<div style="font-size: 50px; text-align: center;">
+  <strong>Família Regular de Regiões de Confiança</strong>
+</div>
 
 ---
 
@@ -292,24 +296,6 @@ Dizemos que $\alpha\in(0,1)$ é o nível de significância.
 
 # Família Regular de Regiões de Confiança
 
-## Definição de FRRC
-
-**Família Regular de Regiões de Confiança - FRRC**. Seja $\{\Lambda_\alpha^{\boldsymbol{x}_n}\}_{\alpha\in(0,1)}$ uma coleção de funções $\Lambda_\alpha^{\cdot}:\mathcal{X}\to2^{\Theta}$. Tal coleção é dita ser uma Família Regular de Regiões de Confiança (FRRC) para $\boldsymbol{\theta}$ se, e somente se, as seguintes condições de regularidade forem satisfeitas:
-    
-- $\mathbb{P}_{\boldsymbol{\theta}}\left(\Lambda_\alpha^{\boldsymbol{X}_n} \ni \boldsymbol{\theta}\right) \geq 1 - \alpha$, para cada $\boldsymbol{\theta} \in \Theta$ e cada $\alpha\in(0,1)$;
-        
-- $\bigcup\limits_{\alpha \in (0,1)} \Lambda_\alpha^{\boldsymbol{x}_n} = \Theta$, para cada $\boldsymbol{x}_n\in\mathcal{X}$;
-
-- $\bigcap\limits_{\alpha \in (0,1)} \Lambda_\alpha^{\boldsymbol{x}_n} \neq \varnothing$, para cada $\boldsymbol{x}_n\in\mathcal{X}$.
-$$\color{blue}{
-\bigcap\limits_{\alpha \in (0,1)} \Lambda_\alpha^{\boldsymbol{x}_n} \neq \varnothing \iff
-\Lambda_{\alpha}^{\boldsymbol{x}_n}\neq\varnothing, \text{ para cada } \alpha\in(0,1).
-}$$
-
----
-
-# Família Regular de Regiões de Confiança
-
 **Aninhamento.** Uma FRRC para $\boldsymbol{\theta}$, $\{\Lambda_{\alpha}^{\boldsymbol{x}_n}\}_{\alpha\in(0,1)}$, satisfaz a propriedade de aninhamento se, e somente se, para cada $\boldsymbol{x}_n\in\mathcal{X}$,
 
 $$
@@ -343,6 +329,8 @@ $$
 $$
 em que $\overline{\Lambda_{\alpha}^{\boldsymbol{X}_n}}$ é o fecho de $\Lambda_{\alpha}^{\boldsymbol{X}_n}$.
 
+- A região de confiança converge em probabilidade para o parâmetro $\boldsymbol{\theta}$.
+
 ---
 
 # Família Regular de Regiões de Confiança
@@ -356,6 +344,14 @@ em que $\overline{\Lambda_{\alpha}^{\boldsymbol{X}_n}}$ é o fecho de $\Lambda_{
 - $\bigcup\limits_{\alpha \in (0,1)} \tilde{\Lambda}_\alpha^{\boldsymbol{x}_n} = \Theta$, para cada $\boldsymbol{x}_n\in\mathcal{X}$;
 
 - $\bigcap\limits_{\alpha \in (0,1)} \tilde{\Lambda}_\alpha^{\boldsymbol{x}_n} \neq \varnothing$, para cada $\boldsymbol{x}_n\in\mathcal{X}$.
+
+---
+
+class: center, middle
+
+<div style="font-size: 70px; text-align: center;">
+  <strong>Valor-S Generalizado</strong>
+</div>
 
 ---
 
@@ -473,6 +469,18 @@ $$
 $$
 em que $\mbox{int}(A)$ é o interior do conjunto $A$.
 
+```{r, echo = F, fig.align = 'center', out.width = '80%'}
+knitr::include_graphics('Figuras/REACT.png')
+```
+
+---
+
+class: center, middle
+
+<div style="font-size: 70px; text-align: center;">
+  <strong>Monotonicidade</strong>
+</div>
+
 ---
 
 # Monotonicidade
@@ -572,6 +580,8 @@ em que $t_{\hat{\boldsymbol{\theta}}_{j}}^{(j)}$ é o valor observado da estatí
 
 ## Exemplo de Violação
 
+Hipóteses $$\mathcal{H}_{1}:\theta_1=\theta_2=0 \quad \mbox{e} \quad \mathcal{H}_{2}:\theta_1=0.$$
+
 - $t_{\hat{\boldsymbol{\theta}}_{1}}^{(1)} = 3.149735$ e $t_{\hat{\boldsymbol{\theta}}_{2}}^{(2)} = 5.78221$.
 - $p_{\boldsymbol{d}_{10}}(\Theta_1) = 0.1058$ e $p_{\boldsymbol{d}_{10}}(\Theta_2) = 0.0471$.
 - Os dados observados apresentam mais evidências contra $\theta_1 = 0$ do que contra $\theta_1 = \theta_2 = 0$ $(0.0471<0.1058)$, o que viola a propriedade de monotonicidade.
@@ -591,30 +601,6 @@ kbl(t(df),
 
 ---
 
-# Monotonicidade
-
-## Exemplo de Violação
-
-```{r, echo = T, results = 'hide'}
-df = data.frame(y  = c(0.33, -0.24, 3.11, 0.69, 4.05, 1.71, 4.41, -2.05, 0.05, 0.78),
-                x1 = c(-6.54, 1.30, 1.93, -1.68, 2.90, 3.54, 4.79, -4.71, 2.58, -4.10),
-                x2 = c(0.27, -0.54, 1.00, 0.87, -0.56, 0.13, -0.26, -0.76, 0.05, -0.19))
-fit = lm(y ~ x1 + x2, data = df)
-summary(fit)
-```
-
----
-
-# Monotonicidade
-
-## Exemplo de Violação
-
-```{r, echo = F}
-summary(fit)
-```
-
----
-
 # Monotonicidade do Valor-S
 
 Representação gráfica da monotonicidade do valor-s generalizado, considerando que as regiões em $\left\{\Lambda_{\alpha}^{\boldsymbol{x}_n}\right\}_{\alpha \in (0,1)}$ são aninhadas.
@@ -624,6 +610,14 @@ Representação gráfica da monotonicidade do valor-s generalizado, considerando
 </div>
 
 - Se $\Theta_{1}\subseteq\Theta_{2}$, então $s_{{\boldsymbol{x}_n}}(\Theta_{1})\leq s_{{\boldsymbol{x}_n}}(\Theta_{2})$.
+
+---
+
+class: center, middle
+
+<div style="font-size: 70px; text-align: center;">
+  <strong>Conjuntos de Decisão</strong>
+</div>
 
 ---
 
@@ -720,7 +714,15 @@ Para todo conjunto não vazio de índices $I$ e qualquer sequência $\{\Theta_i\
 - $\Theta_{1},\Theta_{2}\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$ se, e somente se, $\Theta_1\cap\Theta_2\in \mathcal{A}_{\alpha_2}^{\boldsymbol{x}_n}$.
 - $\Theta_1,\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$ se, e somente se, $\Theta_1\cup\Theta_2\in \mathcal{R}_{\alpha_1}^{\boldsymbol{x}_n}$.
 
-Os dois últimos resultados mostram que o teste proposto é fortemente consistente para a interseção e para a união quando $I = \{1,2\}$ (dois conjuntos).
+O teste baseado no valor-s satisfaz todas as propriedades lógicas desde que $\alpha_1=\alpha_2$.
+
+---
+
+class: center, middle
+
+<div style="font-size: 70px; text-align: center;">
+  <strong>Controle dos Erros e Consistência do Teste</strong>
+</div>
 
 ---
 
@@ -736,6 +738,9 @@ Os dois últimos resultados mostram que o teste proposto é fortemente consisten
 $$\sup_{\boldsymbol{\theta}\in\Theta_0}\mathbb{P}_{\boldsymbol{\theta}}\left(\Theta_0\in\mathcal{R}_{\alpha_1}^{\boldsymbol{X}_n}\right)\leq \alpha_1
     \quad \text{e} \quad 
     \sup_{\boldsymbol{\theta}\in\Theta_0^c}\mathbb{P}_{\boldsymbol{\theta}}\left(\Theta_0\in\mathcal{A}_{\alpha_2}^{\boldsymbol{X}_n}\right)\leq \alpha_2.$$
+
+- Probabilidade máxima de cometer o erro tipo I é menor que $\alpha_1$.
+- Probabilidade máxima de cometer o erro tipo II é menor que $\alpha_2$.
 
 ---
 
@@ -769,7 +774,16 @@ $$\begin{equation*}
 \end{equation*}$$
 em que $\mbox{int}(A)$ é o interior do conjunto $A$.
 
-A Propriedade estabelece que, assintoticamente, as probabilidades de decisões corretas, como rejeitar $\boldsymbol{\theta} \in \Theta_0$ quando falsa ou aceitar $\boldsymbol{\theta} \in \Theta_0$ quando verdadeira, convergem para 1, o que evita problemas de rejeitar a hipótese sempre que $n$ aumenta.
+- Assintoticamente, as probabilidades de decisões corretas, como rejeitar $\boldsymbol{\theta} \in \Theta_0$ quando falsa ou aceitar $\boldsymbol{\theta} \in \Theta_0$ quando verdadeira, convergem para 1.
+- Evita problemas do tipo "rejeitar a hipótese sempre que $n$ aumenta".
+
+---
+
+class: center, middle
+
+<div style="font-size: 70px; text-align: center;">
+  <strong>Estudo de Simulação</strong>
+</div>
 
 ---
 
@@ -784,7 +798,7 @@ $$\mathcal{H}_0: \boldsymbol{\theta} \in \Theta_0 = \left\{\boldsymbol{\theta} \
 
 # Estudo de Simulação
 
-- Probabilidades estimadas via Monte Carlo com $R = 10000$ simulações.  
+- $R = 10000$ simulações de Monte Carlo.  
 
 - Tamanhos amostrais: $n \in \{10, 50, 80, 100, 300, 500\}$.  
 
@@ -848,6 +862,9 @@ kbl(dados,
 knitr::include_graphics('Figuras/Heatmaps/HeatmapH0.png')
 ```
 
+- As probabilidades de aceitação convergem pra 1 com o aumento de $n$.
+- Essa convergência é mais rápida em cenários distantes da borda da hipótese testada.
+
 ---
 
 # Estudo de Simulação
@@ -897,6 +914,17 @@ kbl(dados,
 knitr::include_graphics('Figuras/Heatmaps/HeatmapH1.png')
 ```
 
+- As probabilidades de rejeição convergem pra 1 com o aumento de $n$.
+- Essa convergência é mais rápida em cenários distantes da borda da hipótese testada.
+
+---
+
+class: center, middle
+
+<div style="font-size: 70px; text-align: center;">
+  <strong>Conclusão</strong>
+</div>
+
 ---
 
 # Conclusão
@@ -917,11 +945,9 @@ knitr::include_graphics('Figuras/Heatmaps/HeatmapH1.png')
 
 - Estudar o valor-s em modelos não identificáveis.
 
-- Estudar as propriedades do teste quando o modelo está mal especificado (*model misspecification*).
+- Estudar as propriedades do teste proposto quando o modelo está mal especificado (*model misspecification*).
 
-- Desenvolver uma teoria para modelos de linguagem.
-
-- Comparar os testes agnósticos utilizando duas medidas de evidência: a clássica, representada pelo valor-s, e a bayesiana, representada pelo valor-e.
+- Desenvolver uma teoria para modelos de aprendizado de máquina, como modelos de linguagem.
 
 ---
 
@@ -952,12 +978,6 @@ PrintBibliography(myBib, start = 13)
 ```{r, echo = F, out.width = '30%', fig.align = 'center'}
 library(qrcode)
 QR = qr_code('https://github.com/Andrey-Sarmento/ThesisPresentation.git')
-plot(QR)
-```
-
----
-
-```{r, echo = F, out.width = '30%', fig.align = 'center'}
 plot(QR)
 ```
 
